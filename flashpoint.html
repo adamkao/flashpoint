@@ -1,0 +1,217 @@
+<html>
+
+<head>
+
+<title>Flash Point</title>
+
+<style type="text/css">
+img {position:absolute;}
+.row1 {top:60;}
+.row2 {top:111;}
+.row3 {top:162;}
+.row4 {top:213;}
+.row5 {top:264;}
+.row6 {top:315;}
+.col1 {left:60;}
+.col2 {left:111;}
+.col3 {left:162;}
+.col4 {left:213;}
+.col5 {left:264;}
+.col6 {left:315;}
+.col7 {left:366;}
+.col8 {left:417;}
+</style>
+
+<script type='text/javascript' src='jquery-1.7.2.js'></script>
+<script type='text/javascript' src='flashpoint.js'></script>
+
+</head>
+
+<body>
+
+<div><button onclick='advance()'>Advance</button></div>
+<div><textarea cols='60' rows='1' readonly='readonly' id='output'></textarea></div>
+
+<div id='board' style='position:relative;'>
+
+	<img src='Board1.png' />
+
+	<img src='player.png' class='row1 col1' style='display:inline;' />
+
+	<img src='door-closed.png' style='left:187px; top:60px' />
+	<img src='door-closed.png' style='left:136px; top:162px' />
+	<img src='door-closed.png' style='left:340px; top:213px' />
+	<img src='door-closed.png' style='left:290px; top:316px' />
+	<img src='door-closed.png' style='left:391px; top:316px' />
+	<img src='door-closed.png' style='left:213px; top:238px' />
+	<img src='door-closed.png' style='left:265px; top:137px' />
+	<img src='door-closed.png' style='left:417px; top:138px' />
+
+	<img src='fire.png' class='fire col1 row1' style='display:none;' />
+	<img src='fire.png' class='fire col2 row1' style='display:none;' />
+	<img src='fire.png' class='fire col3 row1' style='display:none;' />
+	<img src='fire.png' class='fire col4 row1' style='display:none;' />
+	<img src='fire.png' class='fire col5 row1' style='display:none;' />
+	<img src='fire.png' class='fire col6 row1' style='display:none;' />
+	<img src='fire.png' class='fire col7 row1' style='display:none;' />
+	<img src='fire.png' class='fire col8 row1' style='display:none;' />
+
+	<img src='fire.png' class='fire col1 row2' style='display:none;' />
+	<img src='fire.png' class='fire col2 row2' style='display:none;' />
+	<img src='fire.png' class='fire col3 row2' style='display:none;' />
+	<img src='fire.png' class='fire col4 row2' style='display:none;' />
+	<img src='fire.png' class='fire col5 row2' style='display:none;' />
+	<img src='fire.png' class='fire col6 row2' style='display:none;' />
+	<img src='fire.png' class='fire col7 row2' style='display:none;' />
+	<img src='fire.png' class='fire col8 row2' style='display:none;' />
+
+	<img src='fire.png' class='fire col1 row3' style='display:none;' />
+	<img src='fire.png' class='fire col2 row3' style='display:none;' />
+	<img src='fire.png' class='fire col3 row3' style='display:inline;' />
+	<img src='fire.png' class='fire col4 row3' style='display:inline;' />
+	<img src='fire.png' class='fire col5 row3' style='display:inline;' />
+	<img src='fire.png' class='fire col6 row3' style='display:inline;' />
+	<img src='fire.png' class='fire col7 row3' style='display:none;' />
+	<img src='fire.png' class='fire col8 row3' style='display:none;' />
+
+	<img src='fire.png' class='fire col1 row4' style='display:none;' />
+	<img src='fire.png' class='fire col2 row4' style='display:none;' />
+	<img src='fire.png' class='fire col3 row4' style='display:inline;' />
+	<img src='fire.png' class='fire col4 row4' style='display:inline;' />
+	<img src='fire.png' class='fire col5 row4' style='display:inline;' />
+	<img src='fire.png' class='fire col6 row4' style='display:inline;' />
+	<img src='fire.png' class='fire col7 row4' style='display:none;' />
+	<img src='fire.png' class='fire col8 row4' style='display:none;' />
+
+	<img src='fire.png' class='fire col1 row5' style='display:none;' />
+	<img src='fire.png' class='fire col2 row5' style='display:none;' />
+	<img src='fire.png' class='fire col3 row5' style='display:none;' />
+	<img src='fire.png' class='fire col4 row5' style='display:none;' />
+	<img src='fire.png' class='fire col5 row5' style='display:none;' />
+	<img src='fire.png' class='fire col6 row5' style='display:none;' />
+	<img src='fire.png' class='fire col7 row5' style='display:none;' />
+	<img src='fire.png' class='fire col8 row5' style='display:none;' />
+
+	<img src='fire.png' class='fire col1 row6' style='display:none;' />
+	<img src='fire.png' class='fire col2 row6' style='display:none;' />
+	<img src='fire.png' class='fire col3 row6' style='display:none;' />
+	<img src='fire.png' class='fire col4 row6' style='display:none;' />
+	<img src='fire.png' class='fire col5 row6' style='display:none;' />
+	<img src='fire.png' class='fire col6 row6' style='display:none;' />
+	<img src='fire.png' class='fire col7 row6' style='display:none;' />
+	<img src='fire.png' class='fire col8 row6' style='display:none;' />
+
+	<img src='smoke.png' class='smoke col1 row1' style='display:none;' />
+	<img src='smoke.png' class='smoke col2 row1' style='display:none;' />
+	<img src='smoke.png' class='smoke col3 row1' style='display:none;' />
+	<img src='smoke.png' class='smoke col4 row1' style='display:none;' />
+	<img src='smoke.png' class='smoke col5 row1' style='display:none;' />
+	<img src='smoke.png' class='smoke col6 row1' style='display:none;' />
+	<img src='smoke.png' class='smoke col7 row1' style='display:none;' />
+	<img src='smoke.png' class='smoke col8 row1' style='display:none;' />
+
+	<img src='smoke.png' class='smoke col1 row2' style='display:none;' />
+	<img src='smoke.png' class='smoke col2 row2' style='display:none;' />
+	<img src='smoke.png' class='smoke col3 row2' style='display:none;' />
+	<img src='smoke.png' class='smoke col4 row2' style='display:none;' />
+	<img src='smoke.png' class='smoke col5 row2' style='display:none;' />
+	<img src='smoke.png' class='smoke col6 row2' style='display:none;' />
+	<img src='smoke.png' class='smoke col7 row2' style='display:none;' />
+	<img src='smoke.png' class='smoke col8 row2' style='display:none;' />
+
+	<img src='smoke.png' class='smoke col1 row3' style='display:none;' />
+	<img src='smoke.png' class='smoke col2 row3' style='display:none;' />
+	<img src='smoke.png' class='smoke col3 row3' style='display:none;' />
+	<img src='smoke.png' class='smoke col4 row3' style='display:none;' />
+	<img src='smoke.png' class='smoke col5 row3' style='display:none;' />
+	<img src='smoke.png' class='smoke col6 row3' style='display:none;' />
+	<img src='smoke.png' class='smoke col7 row3' style='display:none;' />
+	<img src='smoke.png' class='smoke col8 row3' style='display:none;' />
+
+	<img src='smoke.png' class='smoke col1 row4' style='display:none;' />
+	<img src='smoke.png' class='smoke col2 row4' style='display:none;' />
+	<img src='smoke.png' class='smoke col3 row4' style='display:none;' />
+	<img src='smoke.png' class='smoke col4 row4' style='display:none;' />
+	<img src='smoke.png' class='smoke col5 row4' style='display:none;' />
+	<img src='smoke.png' class='smoke col6 row4' style='display:none;' />
+	<img src='smoke.png' class='smoke col7 row4' style='display:none;' />
+	<img src='smoke.png' class='smoke col8 row4' style='display:none;' />
+
+	<img src='smoke.png' class='smoke col1 row5' style='display:none;' />
+	<img src='smoke.png' class='smoke col2 row5' style='display:none;' />
+	<img src='smoke.png' class='smoke col3 row5' style='display:none;' />
+	<img src='smoke.png' class='smoke col4 row5' style='display:none;' />
+	<img src='smoke.png' class='smoke col5 row5' style='display:none;' />
+	<img src='smoke.png' class='smoke col6 row5' style='display:none;' />
+	<img src='smoke.png' class='smoke col7 row5' style='display:none;' />
+	<img src='smoke.png' class='smoke col8 row5' style='display:none;' />
+
+	<img src='smoke.png' class='smoke col1 row6' style='display:none;' />
+	<img src='smoke.png' class='smoke col2 row6' style='display:none;' />
+	<img src='smoke.png' class='smoke col3 row6' style='display:none;' />
+	<img src='smoke.png' class='smoke col4 row6' style='display:none;' />
+	<img src='smoke.png' class='smoke col5 row6' style='display:none;' />
+	<img src='smoke.png' class='smoke col6 row6' style='display:none;' />
+	<img src='smoke.png' class='smoke col7 row6' style='display:none;' />
+	<img src='smoke.png' class='smoke col8 row6' style='display:none;' />
+
+	<img src='POI.png' class='POI col1 row1' style='display:none;' />
+	<img src='POI.png' class='POI col2 row1' style='display:none;' />
+	<img src='POI.png' class='POI col3 row1' style='display:none;' />
+	<img src='POI.png' class='POI col4 row1' style='display:none;' />
+	<img src='POI.png' class='POI col5 row1' style='display:inline;' />
+	<img src='POI.png' class='POI col6 row1' style='display:none;' />
+	<img src='POI.png' class='POI col7 row1' style='display:none;' />
+	<img src='POI.png' class='POI col8 row1' style='display:none;' />
+
+	<img src='POI.png' class='POI col1 row2' style='display:none;' />
+	<img src='POI.png' class='POI col2 row2' style='display:none;' />
+	<img src='POI.png' class='POI col3 row2' style='display:none;' />
+	<img src='POI.png' class='POI col4 row2' style='display:none;' />
+	<img src='POI.png' class='POI col5 row2' style='display:none;' />
+	<img src='POI.png' class='POI col6 row2' style='display:none;' />
+	<img src='POI.png' class='POI col7 row2' style='display:none;' />
+	<img src='POI.png' class='POI col8 col2' style='display:none;' />
+
+	<img src='POI.png' class='POI col1 row3' style='display:none;' />
+	<img src='POI.png' class='POI col2 row3' style='display:none;' />
+	<img src='POI.png' class='POI col3 row3' style='display:none;' />
+	<img src='POI.png' class='POI col4 row3' style='display:none;' />
+	<img src='POI.png' class='POI col5 row3' style='display:none;' />
+	<img src='POI.png' class='POI col6 row3' style='display:none;' />
+	<img src='POI.png' class='POI col7 row3' style='display:none;' />
+	<img src='POI.png' class='POI col8 row3' style='display:none;' />
+
+	<img src='POI.png' class='POI col1 row4' style='display:none;' />
+	<img src='POI.png' class='POI col2 row4' style='display:none;' />
+	<img src='POI.png' class='POI col3 row4' style='display:none;' />
+	<img src='POI.png' class='POI col4 row4' style='display:none;' />
+	<img src='POI.png' class='POI col5 row4' style='display:none;' />
+	<img src='POI.png' class='POI col6 row4' style='display:none;' />
+	<img src='POI.png' class='POI col7 row4' style='display:none;' />
+	<img src='POI.png' class='POI col8 row4' style='display:none;' />
+
+	<img src='POI.png' class='POI col1 row5' style='display:inline;' />
+	<img src='POI.png' class='POI col2 row5' style='display:none;' />
+	<img src='POI.png' class='POI col3 row5' style='display:none;' />
+	<img src='POI.png' class='POI col4 row5' style='display:none;' />
+	<img src='POI.png' class='POI col5 row5' style='display:none;' />
+	<img src='POI.png' class='POI col6 row5' style='display:none;' />
+	<img src='POI.png' class='POI col7 row5' style='display:none;' />
+	<img src='POI.png' class='POI col8 row5' style='display:none;' />
+
+	<img src='POI.png' class='POI col1 row6' style='display:none;' />
+	<img src='POI.png' class='POI col2 row6' style='display:none;' />
+	<img src='POI.png' class='POI col3 row6' style='display:none;' />
+	<img src='POI.png' class='POI col4 row6' style='display:none;' />
+	<img src='POI.png' class='POI col5 row6' style='display:none;' />
+	<img src='POI.png' class='POI col6 row6' style='display:none;' />
+	<img src='POI.png' class='POI col7 row6' style='display:inline;' />
+	<img src='POI.png' class='POI col8 row6' style='display:none;' />
+
+</div>
+
+</body>
+
+</html>
+
